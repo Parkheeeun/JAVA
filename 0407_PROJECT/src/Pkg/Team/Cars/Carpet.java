@@ -1,0 +1,25 @@
+package Pkg.Team.Cars;
+
+import Pkg.Commons.*;
+public class Carpet implements IFly{
+
+	private String carpetName;
+	private Engine engine;
+	
+	public Carpet() {
+		this.engine=new AirEngine();
+	}
+	
+	public Carpet(String carpetName) {
+		this.carpetName=carpetName;
+		this.engine=new AirEngine();
+	}
+	
+	@Override
+	public void fly() {
+		System.out.println("카펫이 난다.");
+	}
+	
+	
+	
+}

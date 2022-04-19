@@ -11,6 +11,8 @@ public class Exec {
 		Board board=new Board();
 		board.boardWrite(user);
 		
+		
+		
 	}
 
 }

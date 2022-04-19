@@ -1,7 +1,10 @@
 package Pkg.DB;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
+import Pkg.Boards.Board;
 import oracle.jdbc.OracleTypes;
 
 public class DBUse {
@@ -81,7 +84,7 @@ public class DBUse {
 		return dbCnt;
 	}
 	
-	public ResultSet/*ArrayList<Board>*/ getDBSelect(String strSql, String[] strParams,boolean isCursor) {
+	private ResultSet/*ArrayList<Board>*/ getDBSelect(String strSql, String[] strParams,boolean isCursor) {
 		ResultSet rs=null;
 		try {
 			if(queryKind==QueryKind.Inline) {
@@ -107,6 +110,33 @@ public class DBUse {
 		}
 		
 		return rs;
+	}
+	
+	public ArrayList<Board> getBoradList(String strSql, String[] strParams,boolean isCursor){
+		ResultSet rs=getDBSelect(strSql,strParams,isCursor);
+		 ArrayList<Board> list=new ArrayList<Board>();
+		 try {
+			 String strIDX="";
+				String strTITLE="";
+				String strUSERID="";
+				String strUSERNAME="";
+				String strREGDATE="";
+				while(rs.next()) {
+					strIDX=rs.getString("IDX");
+					strTITLE=rs.getString("TITLE");
+					strUSERID=rs.getString("USERID");
+					strUSERNAME=rs.getString("USERNAME");
+					strREGDATE=rs.getString("REGDATE");
+					System.out.println(strIDX+" - "+strTITLE+" - "+strUSERID+" - "+strUSERNAME+" - "+strREGDATE);
+					Board b=new Board();
+					list.add(b);
+				}
+			}catch(Exception e) {
+				System.out.println("boardList");
+				System.out.println(e.getMessage());
+			}
+		 return list;
+
 	}
 	
 	

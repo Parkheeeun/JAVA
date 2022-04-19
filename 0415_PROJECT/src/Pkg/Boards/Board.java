@@ -2,7 +2,6 @@ package Pkg.Boards;
 
 import java.sql.ResultSet;
 import java.util.Scanner;
-
 import Pkg.DB.*;
 
 public class Board {
@@ -71,7 +70,7 @@ public class Board {
 	}
 	
 	
-	
+	/*
 	public void boardList2() {
 		String strProcName="{call PKG_BOARD.PROC_SEL_BOARD(?,?)}";
 		String[] strParams=new String[1];
@@ -92,6 +91,22 @@ public class Board {
 				strREGDATE=rs.getString("REGDATE");
 				System.out.println(strIDX+" - "+strTITLE+" - "+strUSERID+" - "+strUSERNAME+" - "+strREGDATE);
 		}
+		}catch(Exception e) {
+			System.out.println("boardList2");
+			System.out.println(e.getMessage());
+		}
+	}*/
+	
+	
+	
+	
+	public void boardList2() {
+		String strProcName="{call PKG_BOARD.PROC_SEL_BOARD(?,?)}";
+		String[] strParams=new String[1];
+		strParams[0]="";
+		try {
+			dbUse.setQueryKind(QueryKind.Procedure);
+			dbUse.getBoradList(strProcName,strParams,true);
 		}catch(Exception e) {
 			System.out.println("boardList2");
 			System.out.println(e.getMessage());
